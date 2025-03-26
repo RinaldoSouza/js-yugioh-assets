@@ -31,7 +31,7 @@ const cardData = [
         id: 0,
         name: "Blue Eyes White Dragon",
         type: "Paper"
-        img: `${pathImages}dragon.png`,
+        img: pathImages + "dragon.png",
         WinOf: [1],
         LoseOf: [2],
     },
@@ -39,7 +39,7 @@ const cardData = [
         id: 1,
         name: "Dark Magician",
         type: "Rock"
-        img: `${pathImages}magician.png`,
+        img: pathImages + "magician.png",
         WinOf: [2],
         LoseOf: [0],
     },
@@ -47,10 +47,10 @@ const cardData = [
         id: 2,
         name: "Exodia",
         type: "Scissors"
-        img: `${pathImages}exodia.png`,
+        img: pathImages + exodia.png,
         WinOf: [0],
         LoseOf: [1],
-    },
+    }
 ];
 
 async function getRandomCardId() {
@@ -58,7 +58,7 @@ async function getRandomCardId() {
     return cardData[randomIndex].id;
 }
 
-async function createCardImage(IdCard, fieldCards) {
+async function createCardImage(IdCard, fieldSide) {
     const cardImage = document.createElement("img");
     cardImage.setAttribute("height", "100px");
     cardImage.setAttribute("src", "./src/assets/icons/card-back.png");
@@ -66,12 +66,12 @@ async function createCardImage(IdCard, fieldCards) {
     cardImage.classList.add("card");
 
     if (fieldSide === playerSides.player1) {
-        cardImage.addEventListener("click", function () {
+        cardImage.addEventListener("click", () => {
             setCardsField(cardImage.getAttribute("data-id"));
         });
     }
 
-    cardImage.addEventListener("mouseover", function () {
+    cardImage.addEventListener("mouseover", () => {
         drawSelectCard(IdCard);
     });
     return cardImage;
@@ -83,7 +83,7 @@ async function drawCards(cardNumbers, fieldSide) {
         const cardImage = await createCardImage(randomIdCard, fieldSide);
 
         document.getElementById(fieldSide).appendChild(cardImage);
-    };
+    }
 }
 
 function init() {
