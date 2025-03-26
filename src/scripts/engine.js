@@ -59,22 +59,22 @@ async function getRandomCardId() {
 }
 
 async function createCardImage(IdCard, fieldCards) {
-const cardImage = document.createElement("img");
-cardImage.setAttribute("height", "100px");
-cardImage.setAttribute("src", "./src/assets/icons/card-back.png");
-cardImage.setAttribute("data-id", IdCard);
-cardImage.classList.add("card");
+    const cardImage = document.createElement("img");
+    cardImage.setAttribute("height", "100px");
+    cardImage.setAttribute("src", "./src/assets/icons/card-back.png");
+    cardImage.setAttribute("data-id", IdCard);
+    cardImage.classList.add("card");
 
-if(fieldSide === playerSides.player1){
-    cardImage.addEventListener("click" ()=>{
-        setCardsField(cardImage.getAttribute("data-id"));
+    if (fieldSide === playerSides.player1) {
+        cardImage.addEventListener("click", function () {
+            setCardsField(cardImage.getAttribute("data-id"));
+        });
+    }
+
+    cardImage.addEventListener("mouseover", function () {
+        drawSelectCard(IdCard);
     });
-}
-
-cardImage.addEventListener("mouseover", ()=>{
-drawSelectCard(IdCard);
-});
-return cardImage;
+    return cardImage;
 }
 
 async function drawCards(cardNumbers, fieldSide) {
