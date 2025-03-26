@@ -66,12 +66,12 @@ cardImage.setAttribute("data-id", IdCard);
 cardImage.classList.add("card");
 
 if(fieldSide === playerSides.player1){
-    cardImage.addEventListener("click" ()==>{
+    cardImage.addEventListener("click" ()=>{
         setCardsField(cardImage.getAttribute("data-id"));
     });
 }
 
-cardImage.addEventListener("mouseover", ()==>{
+cardImage.addEventListener("mouseover", ()=>{
 drawSelectCard(IdCard);
 });
 return cardImage;
