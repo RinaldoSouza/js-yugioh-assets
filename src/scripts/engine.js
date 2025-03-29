@@ -31,7 +31,7 @@ const cardData = [
         id: 0,
         name: "Blue Eyes White Dragon",
         type: "Paper"
-        img: pathImages + "dragon.png",
+        img: `${pathImages}dragon.png`,
         WinOf: [1],
         LoseOf: [2],
     },
@@ -39,7 +39,7 @@ const cardData = [
         id: 1,
         name: "Dark Magician",
         type: "Rock"
-        img: pathImages + "magician.png",
+        img: `${pathImages}magician.png`,
         WinOf: [2],
         LoseOf: [0],
     },
@@ -47,10 +47,10 @@ const cardData = [
         id: 2,
         name: "Exodia",
         type: "Scissors"
-        img: pathImages + exodia.png,
+        img: `${pathImages}exodia.png`,
         WinOf: [0],
         LoseOf: [1],
-    }
+    },
 ];
 
 async function getRandomCardId() {
@@ -87,8 +87,8 @@ async function drawCards(cardNumbers, fieldSide) {
 }
 
 function init() {
-    drawCards(5, "playerSides.player1");
-    drawCards(5, "playerSides.computer");
+    drawCards(5, playerSides.player1);
+    drawCards(5, playerSides.computer);
 }
 
 init();
