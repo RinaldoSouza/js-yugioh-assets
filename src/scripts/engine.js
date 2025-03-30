@@ -14,6 +14,7 @@ const state = {
       player: document.getElementById("player-field-card"),
       computer: document.getElementById("computer-field-card"),
     },
+  
     button: document.getElementById("next-duel"),
   };
   
@@ -21,13 +22,15 @@ const state = {
     player1: "player-cards",
     computer: "computer-cards",
   };
-  
+
+const pathImages = "./src/assets/icons/";
+
   const cardData = [
     {
       id: 0,
       name: "Blue Eyes White Dragon",
       type: "Paper",
-      img: "./src/assets/icons/dragon.png",
+      img: pathImages + "dragon.png",
       WinOf: [1],
       LoseOf: [2],
     },
@@ -35,7 +38,7 @@ const state = {
       id: 1,
       name: "Dark Magician",
       type: "Rock",
-      img: "./src/assets/icons/magician.png",
+      img: pathImages + "magician.png",
       WinOf: [2],
       LoseOf: [0],
     },
@@ -43,7 +46,7 @@ const state = {
       id: 2,
       name: "Exodia",
       type: "Scissors",
-      img: "./src/assets/icons/exodia.png",
+      img: pathImages + "exodia.png",
       WinOf: [0],
       LoseOf: [1],
     },
@@ -55,7 +58,7 @@ const state = {
   }
   
   async function setCardsField(cardId) {
-    await RemoveAllCardImages();
+    await removeAllCardImages()
   
     let computerCardId = await getRandomCardId();
   
@@ -99,13 +102,15 @@ const state = {
     cardImage.classList.add("card");
   
     if (fieldSide === player.player1) {
+
+      cardImage.addEventListener("mouseover", () => {
+        drawSelectCard(randomIdCard);
+      });
+
       cardImage.addEventListener("click", () => {
         setCardsField(cardImage.getAttribute("data-id"));
       });
   
-      cardImage.addEventListener("mouseover", () => {
-        drawSelectCard(randomIdCard);
-      });
   
       cardImage.setAttribute("src", "./src/assets/icons/card-back.png");
     }
@@ -113,12 +118,12 @@ const state = {
     return cardImage;
   }
   
-  async function RemoveAllCardImages() {
-    let cards = document.querySelector(".card-box.framed#enemy-cards");
+  async function removeAllCardImages() {
+    let cards = document.querySelector("#computer-cards");
     let imgElements = cards.querySelectorAll("img");
     imgElements.forEach((img) => img.remove());
   
-    cards = document.querySelector(".card-box.framed#player-cards");
+    cards = document.querySelector("#player-cards");
     imgElements = cards.querySelectorAll("img");
     imgElements.forEach((img) => img.remove());
   }
@@ -132,7 +137,7 @@ const state = {
     }
   }
   
-  function drawSelectCard(index) {
+ async function drawSelectCard(index) {
     state.cardSprite.avatar.src = cardData[index].img;
     state.cardSprite.name.innerText = cardData[index].name;
     state.cardSprite.type.innerText = "Attribute: " + cardData[index].type;
